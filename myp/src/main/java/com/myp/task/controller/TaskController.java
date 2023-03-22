@@ -1,5 +1,6 @@
 package com.myp.task.controller;
 
+import com.myp.task.domain.TaskStatus;
 import com.myp.task.dto.TaskResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ public class TaskController {
     @GetMapping("/{taskId}")
     @ResponseStatus(HttpStatus.OK)
     public TaskResponse getTask(@PathVariable long taskId) {
-
+        
         return null;
     }
 

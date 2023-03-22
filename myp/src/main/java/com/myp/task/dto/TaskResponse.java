@@ -7,7 +7,5 @@ import lombok.Getter;
 @Getter
 public class TaskResponse {
 
-    private long taskId;
-    private String taskName;
-    private String taskStatus;  // enum 진행중 , 완료, 우선순위
+
 }
