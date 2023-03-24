@@ -3,6 +3,7 @@ package com.myp.project.domain;
 
 import com.myp.core.domain.BaseDate;
 import com.myp.task.domain.Task;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,14 +18,16 @@ public class Project extends BaseDate {
     @Column(name = "project_id")
     private Long id;
 
+    @Column(nullable = false)
     private String projectName;
+
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "project_category_cd")
-    private CategoryType type;
+    private CategoryType categoryType;
 
     @OneToMany(mappedBy = "project")
-    private List<Task> tasks = new ArrayList<Task>();
+    private List<Task> tasks = new ArrayList<>();
 }

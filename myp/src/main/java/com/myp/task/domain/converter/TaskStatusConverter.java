@@ -6,11 +6,11 @@ import javax.persistence.AttributeConverter;
 import java.util.Objects;
 import java.util.Optional;
 
-public class TaskStatusConverter implements AttributeConverter<TaskStatus, Integer> {
+public class TaskStatusConverter implements AttributeConverter<TaskStatus, String> {
 
     // entity -> db
     @Override
-    public Integer convertToDatabaseColumn(TaskStatus taskStatus) {
+    public String convertToDatabaseColumn(TaskStatus taskStatus) {
         if(Objects.isNull(taskStatus)) {
             return null;
         }
@@ -19,7 +19,7 @@ public class TaskStatusConverter implements AttributeConverter<TaskStatus, Integ
     }
 
     @Override
-    public TaskStatus convertToEntityAttribute(Integer value) {
+    public TaskStatus convertToEntityAttribute(String value) {
 
         if(Objects.isNull(value)) {
             return null;

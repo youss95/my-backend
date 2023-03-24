@@ -17,8 +17,8 @@ public abstract class BaseDate {
 
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime createdDt;
+    private LocalDateTime createdDateTime;
 
     @LastModifiedDate
-    private LocalDateTime updatedDt;
+    private LocalDateTime updatedDateTime;
 }

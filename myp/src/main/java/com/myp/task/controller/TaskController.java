@@ -16,7 +16,7 @@ public class TaskController {
 
 
     private final TaskService taskService;
-    // 작업 단건 상세 조회
+    // task 단건 상세 조회
     @GetMapping("/{taskId}")
     @ResponseStatus(HttpStatus.OK)
     public TaskResponse getTask(@PathVariable long taskId) {
