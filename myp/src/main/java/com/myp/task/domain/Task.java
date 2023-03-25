@@ -4,6 +4,7 @@ import com.myp.core.domain.BaseDate;
 import com.myp.project.domain.Project;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Table(name="ya_task")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class Task extends BaseDate {
 
     @Id
@@ -27,7 +28,7 @@ public class Task extends BaseDate {
     private LocalDateTime endDate;
 
 
-    @Convert(converter = TaskStatus.class)
+    @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
     //Project

@@ -3,6 +3,10 @@ package com.myp.project.domain;
 
 import com.myp.core.domain.BaseDate;
 import com.myp.task.domain.Task;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -11,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table(name = "ya_project")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
 public class Project extends BaseDate {
 
     @Id
@@ -21,13 +29,15 @@ public class Project extends BaseDate {
     @Column(nullable = false)
     private String projectName;
 
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-
+    /**
+     * 접근 권한
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "project_category_cd")
     private CategoryType categoryType;
 
     @OneToMany(mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
+
+
 }
