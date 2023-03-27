@@ -1,7 +1,9 @@
 package com.myp.project.controller;
 
+import com.myp.project.domain.CategoryType;
 import com.myp.project.dto.NewProjectResponse;
 import com.myp.project.dto.ProjectCreateRequest;
+import com.myp.project.dto.ProjectResponse;
 import com.myp.project.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +18,17 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
+    // TODO: workspace에서 조회
     @GetMapping("/")
-    public ResponseEntity<Void> getAllProjects() {
+    public ResponseEntity<ProjectResponse> getAllProjects() {
 
         return null;
     }
 
     @GetMapping("/{projectId}")
-    public ResponseEntity<Void> getProject(@PathVariable long projectId) {
+    public ResponseEntity<ProjectResponse> getProject(@PathVariable long projectId) {
 
-        return null;
+        return ResponseEntity.ok(projectService.findProjectDetail(projectId));
     }
 
     @PostMapping("/")
@@ -34,9 +37,10 @@ public class ProjectController {
         return ResponseEntity.created(URI.create("/project/" + project.getProjectId())).build();
     }
 
-    @PutMapping("/")
-    public ResponseEntity<Void> updateProject() {
+    @PutMapping("/{projectId}")
+    public ResponseEntity<Void> updateProject(String projectName, CategoryType category, Long projectId) {
 
+        projectService.updateProject(projectName, category, projectId);
         return ResponseEntity.noContent().build();
     }
 

@@ -33,9 +33,21 @@ public class ProjectServiceTest {
     @DisplayName("새로운 프로젝트를 생성한다.")
     void createNewProjectTest() {
        NewProjectResponse resp =  projectService.createNewProject(req);
-      Project prj = repository.findById(resp.getProjectId()).orElse(null);
+       Project prj = repository.findById(resp.getProjectId()).orElse(null);
 
         Assertions.assertEquals(req.getProjectName(), prj.getProjectName());
+
+    }
+
+    @Test
+    @DisplayName("프로젝트 내용을 변경한다.")
+    void updateProjectTest() {
+        projectService.createNewProject(req);
+        projectService.updateProject("update_prj", CategoryType.PERSONAL,1L);
+        Project prj = repository.findById(1L).orElse(null);
+
+        Assertions.assertEquals("update_prj", prj.getProjectName());
+
 
     }
 }
