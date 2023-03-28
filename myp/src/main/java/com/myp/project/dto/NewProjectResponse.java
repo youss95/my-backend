@@ -1,6 +1,5 @@
 package com.myp.project.dto;
 
-import com.myp.project.domain.CategoryType;
 import com.myp.project.domain.Project;
 
 public class NewProjectResponse {

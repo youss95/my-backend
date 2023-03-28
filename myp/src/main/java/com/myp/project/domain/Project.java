@@ -3,6 +3,7 @@ package com.myp.project.domain;
 
 import com.myp.core.domain.BaseDate;
 import com.myp.task.domain.Task;
+import com.myp.workspace.domain.WorkSpace;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,15 +30,13 @@ public class Project extends BaseDate {
     @Column(nullable = false)
     private String projectName;
 
-    /**
-     * 접근 권한
-     */
-    @Enumerated(EnumType.STRING)
-    @Column(name = "project_category_cd")
-    private CategoryType categoryType;
+    private String description;
 
     @OneToMany(mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "workspace_id")
+    private WorkSpace workSpace;
 
 }

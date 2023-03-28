@@ -1,6 +1,5 @@
 package com.myp.project.service;
 
-import com.myp.project.domain.CategoryType;
 import com.myp.project.domain.Project;
 import com.myp.project.dto.NewProjectResponse;
 import com.myp.project.dto.ProjectCreateRequest;
@@ -8,7 +7,7 @@ import com.myp.project.dto.ProjectResponse;
 import com.myp.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
@@ -22,9 +21,9 @@ public class ProjectService {
         return new NewProjectResponse(savedProject);
     }
 
-    public void updateProject(final String projectName,final CategoryType category,final Long projectId) {
+    public void updateProject(final String projectName,final String description,final Long projectId) {
 
-        projectRepository.updateProject(projectName, category, projectId);
+        projectRepository.updateProject(projectName, description, projectId);
     }
 
 

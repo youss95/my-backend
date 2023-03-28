@@ -1,6 +1,5 @@
 package com.myp.project.controller;
 
-import com.myp.project.domain.CategoryType;
 import com.myp.project.dto.NewProjectResponse;
 import com.myp.project.dto.ProjectCreateRequest;
 import com.myp.project.dto.ProjectResponse;
@@ -38,9 +37,9 @@ public class ProjectController {
     }
 
     @PutMapping("/{projectId}")
-    public ResponseEntity<Void> updateProject(String projectName, CategoryType category, Long projectId) {
+    public ResponseEntity<Void> updateProject(String projectName, String description, Long projectId) {
 
-        projectService.updateProject(projectName, category, projectId);
+        projectService.updateProject(projectName, description, projectId);
         return ResponseEntity.noContent().build();
     }
 

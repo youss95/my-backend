@@ -13,7 +13,7 @@ public class ProjectDetailResponse {
 
     private Long id;
     private String projectName;
-    private String categoryType;
+    private String description;
     private List<TaskResponse> tasks;
 
 }
