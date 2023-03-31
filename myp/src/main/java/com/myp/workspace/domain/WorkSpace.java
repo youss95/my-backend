@@ -39,7 +39,7 @@ public class WorkSpace extends BaseDate {
 
     // 참여자
     @OneToMany(mappedBy = "workSpace")
-    private List<Participant> participants = new ArrayList<>();
+    private List<CoWorker> participants = new ArrayList<>();
 
     public void isAccessible(CategoryType category) {
       switch (category) {

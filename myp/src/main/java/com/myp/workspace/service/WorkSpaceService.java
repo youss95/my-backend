@@ -1,13 +1,13 @@
 package com.myp.workspace.service;
 
-import com.myp.workspace.domain.Participant;
-import com.myp.workspace.domain.WorkSpace;
+
+import com.myp.workspace.domain.CoWorker;
 import com.myp.workspace.repository.WokrSpaceRepository;
-import com.myp.workspace.repository.participant.ParticipantRepository;
+import com.myp.workspace.repository.coWorker.CoWorkerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
@@ -16,9 +16,9 @@ import java.util.Optional;
 public class WorkSpaceService {
 
     private final WokrSpaceRepository wokrSpaceRepository;
-    private final ParticipantRepository participantRepository;
+    private final CoWorkerRepository coWorkerRepository;
     public void getWorkSpace() {
-       Optional<Participant> workSpace = participantRepository.findById(1L);
+       Optional<CoWorker> workSpace = coWorkerRepository.findById(1L);
         log.debug("ksy {}",workSpace);
     }
 }

@@ -5,13 +5,8 @@ import com.myp.project.dto.NewProjectResponse;
 import com.myp.project.dto.ProjectCreateRequest;
 import com.myp.project.repository.ProjectRepository;
 import com.myp.project.service.ProjectService;
-import com.myp.workspace.domain.CategoryType;
-import com.myp.workspace.domain.Participant;
-import com.myp.workspace.domain.WorkSpace;
-import com.myp.workspace.dto.ParticipantRequest;
-import com.myp.workspace.dto.WorkSpaceCreateRequest;
 import com.myp.workspace.repository.WokrSpaceRepository;
-import com.myp.workspace.repository.participant.ParticipantRepository;
+import com.myp.workspace.repository.coWorker.CoWorkerRepository;
 import com.myp.workspace.service.WorkSpaceService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -34,7 +26,7 @@ public class ProjectServiceTest {
     @Autowired
     private WokrSpaceRepository wokrSpaceRepository;
     @Autowired
-    private ParticipantRepository participantRepository;
+    private CoWorkerRepository participantRepository;
     @Autowired
     private WorkSpaceService workSpaceService;
     private final ProjectCreateRequest req =
@@ -65,18 +57,18 @@ public class ProjectServiceTest {
     @Test
     @DisplayName("test")
     void test() {
-        WorkSpaceCreateRequest req = new WorkSpaceCreateRequest("ss",CategoryType.PRIVATE);
-        WorkSpace workSpace = req.toWorkSpace();
-        wokrSpaceRepository.save(workSpace);
-        ParticipantRequest req1 = new ParticipantRequest();
-        Participant participant = req1.toParticipant();
-        WorkSpace wk = wokrSpaceRepository.findById(1L).orElseThrow(() -> new RuntimeException());
-        Participant participant1 = new Participant("Y",wk);
-        Participant participant2 = new Participant("Y",wk);
-        participantRepository.save(participant1);
-        participantRepository.save(participant2);
-         Participant pp = participantRepository.findById(1L).orElseThrow(() -> new RuntimeException());
-        System.out.println("ksy: " + pp);
-      //  participantRepository.findAll();
+//        WorkSpaceCreateRequest req = new WorkSpaceCreateRequest("ss",CategoryType.PRIVATE);
+//        WorkSpace workSpace = req.toWorkSpace();
+//        wokrSpaceRepository.save(workSpace);
+//        ParticipantRequest req1 = new ParticipantRequest();
+//        Participant participant = req1.toParticipant();
+//        WorkSpace wk = wokrSpaceRepository.findById(1L).orElseThrow(() -> new RuntimeException());
+//        Participant participant1 = new Participant("Y",wk);
+//        Participant participant2 = new Participant("Y",wk);
+//        participantRepository.save(participant1);
+//        participantRepository.save(participant2);
+//         Participant pp = participantRepository.findById(1L).orElseThrow(() -> new RuntimeException());
+//        System.out.println("ksy: " + pp.getRepYn());
+//      //  participantRepository.findAll();
     }
 }
