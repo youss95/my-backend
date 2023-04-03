@@ -32,6 +32,9 @@ public class Project extends BaseDate {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus projectStatus;
+
     @OneToMany(mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
