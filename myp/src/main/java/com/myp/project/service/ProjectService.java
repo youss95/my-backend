@@ -7,7 +7,7 @@ import com.myp.project.dto.ProjectResponse;
 import com.myp.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
@@ -31,5 +31,9 @@ public class ProjectService {
 
        final Project project = projectRepository.findById(projectId).orElseThrow();
        return ProjectResponse.of(project);
+    }
+
+    public List<ProjectResponse> findRecentProjects(long workspaceId) {
+        return null;
     }
 }

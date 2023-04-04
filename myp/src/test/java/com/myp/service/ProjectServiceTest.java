@@ -3,6 +3,7 @@ package com.myp.service;
 import com.myp.project.domain.Project;
 import com.myp.project.dto.NewProjectResponse;
 import com.myp.project.dto.ProjectCreateRequest;
+import com.myp.project.dto.ProjectResponse;
 import com.myp.project.dto.ProjectStatusNumber;
 import com.myp.project.repository.ProjectRepository;
 import com.myp.project.service.ProjectService;
@@ -16,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+
+import java.util.List;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -62,6 +65,13 @@ public class ProjectServiceTest {
         Assertions.assertEquals("update_prj", prj.getProjectName());
 
 
+    }
+
+    @Test
+    @DisplayName("최근 7일 프로젝트 테스트")
+    List<ProjectResponse> getRecentProjects() {
+        long wkId = 1L;
+        return null;
     }
 
     @Test

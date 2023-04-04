@@ -12,6 +12,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -38,8 +39,14 @@ public class Project extends BaseDate {
     @OneToMany(mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")
     private WorkSpace workSpace;
 
+    public int getLeftDays(LocalDateTime startDate, LocalDateTime endDate) {
+        return Period.between(startDate.toLocalDate(), endDate.toLocalDate()).getDays();
+    }
 }

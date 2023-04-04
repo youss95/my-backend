@@ -1,10 +1,12 @@
 package com.myp.task.controller;
 
+import com.myp.task.domain.Task;
 import com.myp.task.domain.TaskStatus;
 import com.myp.task.dto.TaskResponse;
 import com.myp.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +31,12 @@ public class TaskController {
     public List<TaskResponse> getTaskList() {
 
         return null;
+    }
+
+    @GetMapping("/today")
+    public ResponseEntity<List<Task>> findAllTodayTasks(long wkId) {
+
+        taskService.findAllTodayTasks();
+        return ResponseEntity.ok(taskService.findAllTodayTasks());
     }
 }

@@ -3,8 +3,10 @@ package com.myp.project.repository;
 import static com.myp.project.domain.QProject.project;
 
 import com.myp.project.domain.ProjectStatus;
+import com.myp.project.dto.ProjectResponse;
 import com.myp.project.dto.ProjectStatusNumber;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -45,5 +47,10 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
             projectStatusNumber.setCount(name, num);
         }
         return projectStatusNumber;
+    }
+
+    @Override
+    public List<ProjectResponse> getRecentProjects(long wkId) {
+        return queryFactory.select(Projections.constructor(ProjectResponse.class,project.id,project.description,project.projectName)).fetch();
     }
 }

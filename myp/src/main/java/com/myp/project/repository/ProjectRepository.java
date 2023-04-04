@@ -1,7 +1,11 @@
 package com.myp.project.repository;
 
 import com.myp.project.domain.Project;
+import com.myp.project.dto.ProjectResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface ProjectRepository extends JpaRepository<Project, Long>, ProjectRepositoryCustom {
+
 }
