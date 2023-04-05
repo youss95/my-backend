@@ -7,8 +7,12 @@ import com.myp.member.domain.NickName;
 import com.myp.member.domain.Password;
 import com.myp.member.dto.MemberJoinRequest;
 import com.myp.member.repository.MemberRepository;
+import com.myp.workspace.domain.CoWorker;
+import com.myp.workspace.domain.WorkSpace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +40,10 @@ public class MemberService {
                 .build();
 
         memberRepository.save(member);
+    }
+
+    public List<CoWorker> findAllMemberWorkspace(long memberId) {
+
+        return memberRepository.findById(memberId).get().getParticipants();
     }
 }

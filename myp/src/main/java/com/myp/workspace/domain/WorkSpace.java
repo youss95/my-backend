@@ -1,5 +1,6 @@
 package com.myp.workspace.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myp.core.domain.BaseDate;
 import com.myp.project.domain.Project;
 import lombok.AllArgsConstructor;

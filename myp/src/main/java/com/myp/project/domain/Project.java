@@ -1,6 +1,7 @@
 package com.myp.project.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.myp.core.domain.BaseDate;
 import com.myp.task.domain.Task;
 import com.myp.workspace.domain.WorkSpace;

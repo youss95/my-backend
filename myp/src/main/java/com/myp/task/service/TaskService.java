@@ -27,7 +27,7 @@ public class TaskService {
     }
 
     public List<Task> findAllTodayTasks() {
-        
+
         List<Task> tasks = taskRepository.findByCreatedDateTimeBetween(TODAY_START, TODAY_END);
         return tasks.isEmpty() ? Collections.emptyList() : new ArrayList<>(tasks);
     }
