@@ -1,4 +1,4 @@
-package com.myp.project.domain;
+package com.myp.workspace.domain;
 
 public enum CategoryType {
 
