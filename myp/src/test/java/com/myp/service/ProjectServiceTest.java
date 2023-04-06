@@ -69,9 +69,9 @@ public class ProjectServiceTest {
 
     @Test
     @DisplayName("최근 7일 프로젝트 테스트")
-    List<ProjectResponse> getRecentProjects() {
-        long wkId = 1L;
-        return null;
+    void getRecentProjects() {
+      List<ProjectResponse> list = projectService.findRecentProjects(1L);
+        System.out.println("list"+list.get(0).getProjectName());
     }
 
     @Test

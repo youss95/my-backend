@@ -34,6 +34,7 @@ public class ProjectService {
     }
 
     public List<ProjectResponse> findRecentProjects(long workspaceId) {
-        return null;
+
+        return projectRepository.getRecentProjects(workspaceId);
     }
 }
