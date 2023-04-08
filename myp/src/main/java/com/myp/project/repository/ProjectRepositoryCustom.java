@@ -3,6 +3,7 @@ package com.myp.project.repository;
 import com.myp.project.dto.ProjectResponse;
 import com.myp.project.dto.ProjectStatusNumber;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ProjectRepositoryCustom {
@@ -17,5 +18,5 @@ public interface ProjectRepositoryCustom {
      */
     ProjectStatusNumber getCurrentStatusNumber(Long workSpaceId);
 
-    List<ProjectResponse> getRecentProjects(long wkId);
+    List<ProjectResponse> getRecentProjects(long wkId, LocalDateTime st, LocalDateTime end);
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -41,6 +42,16 @@ public class ProjectController {
 
         projectService.updateProject(projectName, description, projectId);
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * 프로젝트 상태에 따른 조회
+     * @param wkId 워크스페이스 seq
+     */
+    @GetMapping("/{workspaceId}/status")
+    public ResponseEntity<List<ProjectResponse>> getProjectsByStatus(@PathVariable long wkId) {
+
+        return ResponseEntity.ok(projectService.findAllprojects(wkId));
     }
 
 

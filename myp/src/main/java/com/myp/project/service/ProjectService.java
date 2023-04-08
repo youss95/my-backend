@@ -7,6 +7,10 @@ import com.myp.project.dto.ProjectResponse;
 import com.myp.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -33,8 +37,13 @@ public class ProjectService {
        return ProjectResponse.of(project);
     }
 
-    public List<ProjectResponse> findRecentProjects(long workspaceId) {
+    public List<ProjectResponse> findRecentProjects(long workspaceId, LocalDateTime st, LocalDateTime end) {
 
-        return projectRepository.getRecentProjects(workspaceId);
+        return projectRepository.getRecentProjects(workspaceId,st,end );
+    }
+
+    public List<ProjectResponse> findAllprojects(long wkId) {
+
+        return projectRepository.getRecentProjects(wkId, null,null);
     }
 }

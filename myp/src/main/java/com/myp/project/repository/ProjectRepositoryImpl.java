@@ -8,9 +8,13 @@ import com.myp.project.dto.ProjectResponse;
 import com.myp.project.dto.ProjectStatusNumber;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.DateTemplate;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.NumberTemplate;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -57,18 +61,27 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
     }
 
     private BooleanExpression betweenRecentDate(LocalDateTime startDate ,LocalDateTime endDate) {
+        if(startDate == null || endDate == null) {
+            return null;
+        }
         BooleanExpression isGoeStartDate = project.createdDateTime.goe(startDate);
         BooleanExpression isLoeEndDate = project.createdDateTime.loe(endDate);
         return Expressions.anyOf(isGoeStartDate,isLoeEndDate);
     }
-    private static final LocalDateTime TODAY_START_DAY = LocalDateTime.of(LocalDate.now(), LocalTime.of(0,0,0)); //오늘 00:00:00
-    private static final LocalDateTime AFTER_7DAYS = LocalDateTime.of(LocalDate.now().plusDays(7), LocalTime.of(23,59,59));
+
     @Override
-    public List<ProjectResponse> getRecentProjects(long wkId) {
+    public List<ProjectResponse> getRecentProjects(long wkId, LocalDateTime startDate, LocalDateTime endDate) {
 
         return queryFactory.select(Projections
-                .constructor(ProjectResponse.class,project.id,project.description,project.projectName))
+                .constructor(ProjectResponse.class,
+                        project.id,
+                        project.description,
+                        project.projectName,
+                        project.projectStatus,
+                        Expressions.as(Expressions.numberTemplate(Integer.class, "function('datediff',{0},{1})",
+                                project.endDate,project.startDate),"leftDays")
+                        ))
                 .from(project)
-                .where(project.workSpace().wkId.eq(wkId),betweenRecentDate(TODAY_START_DAY,AFTER_7DAYS)).fetch();
+                .where(project.workSpace().wkId.eq(wkId),betweenRecentDate(startDate,endDate)).fetch();
     }
 }
