@@ -16,6 +16,12 @@ public class ProjectResponse {
     private String projectName;
     private int leftDays;
 
+    public ProjectResponse(Long projectId, String description, String projectName) {
+        this.projectId = projectId;
+        this.description = description;
+        this.projectName = projectName;
+    }
+
     public ProjectResponse(Long projectId, String description, String projectName, int leftDays) {
         this.projectId = projectId;
         this.description = description;
