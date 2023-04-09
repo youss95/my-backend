@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @SpringBootTest
@@ -41,8 +44,8 @@ public class ProjectServiceTest {
     @Test
     @DisplayName("새로운 프로젝트를 생성한다.")
     void createNewProjectTest() {
-       NewProjectResponse resp =  projectService.createNewProject(req);
-       Project prj = repository.findById(resp.getProjectId()).orElse(null);
+        NewProjectResponse resp = projectService.createNewProject(req);
+        Project prj = repository.findById(resp.getProjectId()).orElse(null);
 
         Assertions.assertEquals(req.getProjectName(), prj.getProjectName());
 
@@ -59,7 +62,7 @@ public class ProjectServiceTest {
     @DisplayName("프로젝트 내용을 변경한다.")
     void updateProjectTest() {
         projectService.createNewProject(req);
-        projectService.updateProject("update_prj", "description1",1L);
+        projectService.updateProject("update_prj", "description1", 1L);
         Project prj = repository.findById(1L).orElse(null);
 
         Assertions.assertEquals("update_prj", prj.getProjectName());
@@ -67,28 +70,24 @@ public class ProjectServiceTest {
 
     }
 
+    private static final LocalDateTime TODAY_START_DAY = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0, 0)); //오늘 00:00:00
+    private static final LocalDateTime AFTER_7DAYS = LocalDateTime.of(LocalDate.now().plusDays(7), LocalTime.of(23, 59, 59));
+
     @Test
     @DisplayName("최근 7일 프로젝트 테스트")
     void getRecentProjects() {
-      List<ProjectResponse> list = projectService.findRecentProjects(1L);
-        System.out.println("list"+list.get(0).getProjectName());
+        List<ProjectResponse> list = projectService.findRecentProjects(1L, TODAY_START_DAY, AFTER_7DAYS);
+        System.out.println("list" + list.get(0).getProjectName());
+        System.out.println("left" + list.get(0).getLeftDays());
     }
 
     @Test
-    @DisplayName("test")
-    void test() {
-//        WorkSpaceCreateRequest req = new WorkSpaceCreateRequest("ss",CategoryType.PRIVATE);
-//        WorkSpace workSpace = req.toWorkSpace();
-//        wokrSpaceRepository.save(workSpace);
-//        ParticipantRequest req1 = new ParticipantRequest();
-//        Participant participant = req1.toParticipant();
-//        WorkSpace wk = wokrSpaceRepository.findById(1L).orElseThrow(() -> new RuntimeException());
-//        Participant participant1 = new Participant("Y",wk);
-//        Participant participant2 = new Participant("Y",wk);
-//        participantRepository.save(participant1);
-//        participantRepository.save(participant2);
-//         Participant pp = participantRepository.findById(1L).orElseThrow(() -> new RuntimeException());
-//        System.out.println("ksy: " + pp.getRepYn());
-//      //  participantRepository.findAll();
+    @DisplayName(("프로젝트 조회"))
+    void findAllProjects() {
+        List<ProjectResponse> list = projectService.findAllprojects(1L);
+        System.out.println("list" + list.get(0).getProjectStatus()); //COMPLETE
+        System.out.println("left" + list.get(0).getLeftDays()); //2
     }
 }
+
+

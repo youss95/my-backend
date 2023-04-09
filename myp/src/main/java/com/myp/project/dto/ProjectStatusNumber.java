@@ -8,7 +8,6 @@ import lombok.Setter;
 
 
 @Getter
-
 public class ProjectStatusNumber {
 
     private Long complete;

@@ -37,5 +37,6 @@ public class TaskServiceTest {
 
         List<Task> list =  taskService.findAllTodayTasks();
         System.out.println("kang: " + list.get(0).getCreatedDateTime()  );
+
     }
 }
