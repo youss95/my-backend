@@ -1,14 +1,12 @@
 package com.myp.core.util;
 
-import org.springframework.stereotype.Component;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@Component
-public class PasswordEncoder {
 
-    public PasswordEncoder() {}
+public class PasswordEncoderTest {
+
+    public PasswordEncoderTest() {}
 
     public String encode(String password) {
         try {

@@ -1,6 +1,7 @@
 package com.myp.member.controller;
 
 import com.myp.member.dto.MemberJoinRequest;
+import com.myp.member.dto.MemberLoginResponse;
 import com.myp.member.dto.MemberWorkspaceResponse;
 import com.myp.member.service.MemberService;
 import com.myp.workspace.domain.CoWorker;
@@ -49,4 +50,8 @@ public class MemberController {
        return ResponseEntity.ok(wkList);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<MemberLoginResponse> login(@RequestBody MemberJoinRequest request) throws Exception {
+        return new ResponseEntity<>(memberService.login(request), HttpStatus.OK);
+    }
 }

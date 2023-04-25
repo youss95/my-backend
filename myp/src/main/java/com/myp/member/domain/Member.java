@@ -23,7 +23,7 @@ public class Member extends BaseDate {
 
 
     @Column(name = "login_id",unique = true)
-    private LoginId loginId;
+    private String loginId;
 
     @Embedded
     private NickName nickName;
@@ -34,7 +34,7 @@ public class Member extends BaseDate {
     @OneToMany(mappedBy = "member")
     private List<CoWorker> participants = new ArrayList<>();
 
-    public Member(LoginId loginId, NickName nickName, Password password) {
+    public Member(String loginId, NickName nickName, Password password) {
         this.loginId = loginId;
         this.nickName = nickName;
         this.password = password;

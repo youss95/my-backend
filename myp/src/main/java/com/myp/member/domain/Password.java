@@ -1,14 +1,17 @@
 package com.myp.member.domain;
 
-import com.myp.core.util.PasswordEncoder;
+
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Password {
 
     @Column(name = "password")
