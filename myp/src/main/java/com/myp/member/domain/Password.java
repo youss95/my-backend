@@ -1,10 +1,12 @@
 package com.myp.member.domain;
 
 
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

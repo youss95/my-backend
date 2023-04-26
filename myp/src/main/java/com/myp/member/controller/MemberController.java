@@ -9,6 +9,7 @@ import com.myp.workspace.domain.WorkSpace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,7 +41,11 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @GetMapping("/ttest")
+    public String ttest(@AuthenticationPrincipal String loginId) {
 
+        return loginId;
+    }
     @GetMapping("/workspace")
     public ResponseEntity<List<MemberWorkspaceResponse>> findAllMemberWorkspace(long memberId) {
        List<CoWorker> list = memberService.findAllMemberWorkspace(memberId);

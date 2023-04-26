@@ -1,6 +1,12 @@
 package com.myp.core.security;
 
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -23,7 +29,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (token != null && jwtProvider.validateToken(token)) {
             token = token.split(" ")[1].trim();
+            String loginId = jwtProvider.getAccount(token);
             System.out.println("token: " + token);
+            System.out.println("ttest: " + loginId);
+            AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(loginId,null, AuthorityUtils.NO_AUTHORITIES);
+             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+             SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+              securityContext.setAuthentication(authentication);
+              SecurityContextHolder.setContext(securityContext);
         }
 
         filterChain.doFilter(request,response);

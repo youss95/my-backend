@@ -1,12 +1,14 @@
 package com.myp.core.util;
 
+import org.springframework.stereotype.Component;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Component
+public class CustomPasswordEncoder {
 
-public class PasswordEncoderTest {
-
-    public PasswordEncoderTest() {}
+    public CustomPasswordEncoder() {}
 
     public String encode(String password) {
         try {
@@ -16,6 +18,12 @@ public class PasswordEncoderTest {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean matches(String request, String password) {
+        String rawPassword = encode(request);
+        if(password != rawPassword) return false;
+        return true;
     }
 
     private String bytesToHex(byte[] bytes) {
