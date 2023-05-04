@@ -30,13 +30,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (token != null && jwtProvider.validateToken(token)) {
             token = token.split(" ")[1].trim();
             String loginId = jwtProvider.getAccount(token);
-            System.out.println("token: " + token);
-            System.out.println("ttest: " + loginId);
+
             AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(loginId,null, AuthorityUtils.NO_AUTHORITIES);
-             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-             SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-              securityContext.setAuthentication(authentication);
-              SecurityContextHolder.setContext(securityContext);
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+            securityContext.setAuthentication(authentication);
+            SecurityContextHolder.setContext(securityContext);
         }
 
         filterChain.doFilter(request,response);

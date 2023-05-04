@@ -37,12 +37,14 @@ public class SecurityConfig {
                             CorsConfigurationSource source = request -> {
                                 // Cors 허용 패턴
                                 CorsConfiguration config = new CorsConfiguration();
+                                config.setAllowCredentials(true);
                                 config.addAllowedMethod(
                                        "*"
                                 );
                                 config.addAllowedOrigin(
-                                       "*"
+                                       "http://localhost:3000"
                                 );
+                                config.addAllowedHeader("*");
                                 return config;
                             };
                             c.configurationSource(source);
@@ -52,7 +54,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/member/join", "/api/member/login").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
